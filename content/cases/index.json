@@ -1,0 +1,97 @@
+{
+  "cases": [
+    {
+      "slug": "cro-loja",
+      "title": {
+        "pt": "Programa de CRO para e-commerce de moda",
+        "en": "CRO playbook for lifestyle e-commerce"
+      },
+      "summary": {
+        "pt": "Redesenho analítico do funil de compras com experimentos A/B e novos gatilhos de confiança.",
+        "en": "Analytics-driven checkout redesign with A/B testing and trust boosters."
+      },
+      "client": "Studio Nébula",
+      "industry": "E-commerce",
+      "tags": ["CRO", "E-commerce", "A/B Testing", "Analytics"],
+      "metrics": [
+        {
+          "label": { "pt": "Taxa de conversão", "en": "Conversion rate" },
+          "value": "+42%"
+        },
+        {
+          "label": { "pt": "Ticket médio", "en": "Average order value" },
+          "value": "+18%"
+        },
+        {
+          "label": { "pt": "LCP médio", "en": "Median LCP" },
+          "value": "1.7s"
+        }
+      ],
+      "date": "2024-08-12",
+      "readingMinutes": 6,
+      "cover": "/cases/cro-loja.svg"
+    },
+    {
+      "slug": "whatsapp-inbox",
+      "title": {
+        "pt": "Inbox inteligente para squads comerciais no WhatsApp",
+        "en": "Smart WhatsApp inbox for revenue squads"
+      },
+      "summary": {
+        "pt": "Plataforma web que prioriza leads, gera respostas com IA e sincroniza CRM em tempo real.",
+        "en": "Web inbox that ranks leads, drafts AI replies and syncs CRM activity in real time."
+      },
+      "client": "GrowthMinds",
+      "industry": "SaaS",
+      "tags": ["Automação", "IA aplicada", "Supabase", "WhatsApp"],
+      "metrics": [
+        {
+          "label": { "pt": "Tempo de primeira resposta", "en": "First response time" },
+          "value": "-63%"
+        },
+        {
+          "label": { "pt": "Reaproveitamento de templates", "en": "Template reuse" },
+          "value": "78%"
+        },
+        {
+          "label": { "pt": "NPS da squad", "en": "Squad NPS" },
+          "value": "62 → 84"
+        }
+      ],
+      "date": "2024-05-03",
+      "readingMinutes": 5,
+      "cover": "/cases/whatsapp-inbox.svg"
+    },
+    {
+      "slug": "inventario-supabase",
+      "title": {
+        "pt": "Inventário em tempo real com Supabase Edge Functions",
+        "en": "Real-time inventory powered by Supabase Edge Functions"
+      },
+      "summary": {
+        "pt": "Replataforma do estoque B2B com stream de eventos, alertas proativos e painel responsivo.",
+        "en": "B2B stock replatforming with event streams, proactive alerts and responsive dashboard."
+      },
+      "client": "Nordic Hardware",
+      "industry": "Logística",
+      "tags": ["Supabase", "Edge", "Observabilidade", "B2B"],
+      "metrics": [
+        {
+          "label": { "pt": "Erros de picking", "en": "Picking errors" },
+          "value": "-55%"
+        },
+        {
+          "label": { "pt": "Cobertura de estoque", "en": "Stock coverage" },
+          "value": "+22%"
+        },
+        {
+          "label": { "pt": "Latência média", "en": "Median latency" },
+          "value": "280ms"
+        }
+      ],
+      "date": "2024-02-20",
+      "readingMinutes": 7,
+      "cover": "/cases/inventario-supabase.svg"
+    }
+  ]
+}

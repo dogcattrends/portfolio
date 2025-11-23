@@ -1,0 +1,73 @@
+# Dependencies
+node_modules/
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Build outputs
+.next/
+out/
+build/
+dist/
+
+# Cache
+.cache/
+.turbo/
+.vercel/
+.swc/
+
+# Testing
+coverage/
+.nyc_output/
+playwright-report/
+test-results/
+
+# Generated files
+*.min.js
+*.min.css
+*.bundle.js
+*.chunk.js
+
+# Env files
+.env
+.env.local
+.env.production
+.env.development
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Public assets (don't format images, fonts, etc)
+public/
+
+# Prisma migrations
+prisma/migrations/
+
+# Auto-generated types
+*.d.ts
+!src/**/*.d.ts
+!types/**/*.d.ts
+
+# MDX compiled
+.mdx
+
+# Storybook
+storybook-static/
+
+# Changelog
+CHANGELOG.md

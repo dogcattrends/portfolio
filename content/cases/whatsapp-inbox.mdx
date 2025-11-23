@@ -1,0 +1,59 @@
+import { fakeCroKpis, fakeWhatsappMessage, setFakerSeed } from '@/data/faker';
+
+setFakerSeed(99);
+const KPIS = fakeCroKpis();
+const SAMPLE_MESSAGES = [
+  fakeWhatsappMessage(),
+  fakeWhatsappMessage(),
+  fakeWhatsappMessage(),
+];
+
+## Cenário
+
+O time comercial da GrowthMinds recebia 1.200+ mensagens/dia vindas de mídia paga regionalizada. Leads eram distribuídos manualmente e o histórico se perdia em múltiplos WhatsApp Web.
+
+<Callout intent="warning">
+  A LGPD exigia rastreabilidade total: qualquer automação precisava registrar consentimento e status de opt-out junto ao CRM.
+</Callout>
+
+## Solução
+
+- **Inbox única** com Next.js + Supabase Realtime; cada mensagem vira evento versionado.
+- **Roteamento inteligente**: score por origem, intenção e SLA, usando dados de Meta Ads e Google Ads.
+- **Assistente de IA**: Llama 3 8B com prompts revisados pelo jurídico gera sugestões editáveis.
+
+<KPI items={KPIS} />
+
+### Amostras de mensagens
+
+- {SAMPLE_MESSAGES[0]}
+- {SAMPLE_MESSAGES[1]}
+- {SAMPLE_MESSAGES[2]}
+
+## Stack resumida
+
+<Code language="ts">{`
+const channel = createServerClient()
+  .channel("inbox")
+  .on("broadcast", { event: "message:new" }, handleMessage)
+  .subscribe();
+
+export async function POST(req: Request) {
+  const payload = await req.json();
+  const scoring = await inferPriority(payload);
+  await supabase.from("inbox_messages").insert({ ...payload, scoring });
+  return NextResponse.json({ ok: true });
+}
+`}</Code>
+
+<Video
+  title="Ui/UX walkthrough"
+  caption="Prioridade dinâmica, painel de contexto e replies com IA."
+  src="https://cdn.coverr.co/videos/coverr-a-business-man-using-a-tablet-5179/1080p.mp4"
+/>
+
+## Impacto
+
+- Resposta inicial caiu **-63%**; produtividade do squad subiu **+38%** e 78% dos templates foram aprovados.
+- Fila única eliminou perda de histórico; auditoria LGPD cobre cada interação.
+- Templates, tags e handoff ficaram disponíveis em 1 clique na UI, com notificações (toast + som) respeitando prefers-reduced-motion.

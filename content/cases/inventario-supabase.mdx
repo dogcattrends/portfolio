@@ -1,0 +1,61 @@
+import { fakeLocation, fakePartName, fakeSku, setFakerSeed } from '@/data/faker';
+
+setFakerSeed(7);
+const SAMPLE_PART = fakePartName();
+const SAMPLE_SKU = fakeSku();
+const SAMPLE_LOCATION = fakeLocation();
+
+## Problema
+
+A Nordic Hardware mantinha o inventário B2B em uma aplicação monolítica com pooling lento (5 min). Erros de picking e divergências de estoque impactavam a margem de forma recorrente.
+
+<Callout intent="info">
+  Objetivo: reduzir divergências em pelo menos 40% e liberar alertas em **menos de 500 ms** após o evento chegar via IoT.
+</Callout>
+
+## Arquitetura
+
+1. **Edge Functions** recebem webhooks do WMS, normalizam eventos e publicam em canais Supabase Realtime.
+2. **Dashboard responsivo** com Next + shadcn/ui exibindo KPIs, alertas e drill-down por SKU.
+3. **Observabilidade**: logs estruturados no Logflare + métricas no Grafana com alertas de latência.
+
+<KPI
+  items={[
+    { label: "Erros de picking", value: "-55%", direction: "positive", description: "Ajustes em rotas de separação" },
+    { label: "Latência média", value: "280 ms", direction: "positive", description: "Edge + canais Realtime" },
+    { label: "Cobertura de estoque", value: "+22%", direction: "positive", description: "Reposição preventiva" }
+  ]}
+/>
+
+### Exemplo de item monitorado
+
+- **Peça:** {SAMPLE_PART}
+- **SKU:** {SAMPLE_SKU}
+- **Local:** {SAMPLE_LOCATION.label}
+
+## Trecho das Edge Functions
+
+<Code language="ts">{`
+import { createClient } from "@supabase/supabase-js";
+
+const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
+
+export default async function handler(req: Request) {
+  const event = await req.json();
+  await supabase.from("inventory_events").insert({
+    sku: event.sku,
+    quantity: event.qty,
+    warehouse: event.warehouse,
+    payload: event,
+  });
+  await supabase.channel("inventory")
+    .send({ type: "broadcast", event: "inventory:updated", payload: event });
+  return new Response(JSON.stringify({ ok: true }), { status: 201 });
+}
+`}</Code>
+
+## Resultado
+
+- Equipes agora acompanham **alertas proativos** por SKU e armazém no painel responsivo.
+- Estoquistas confiam mais no sistema — divergências caíram 55% e SLAs foram cumpridos.
+- A solução roda 100% em edge, com custo previsível e escalabilidade automática.

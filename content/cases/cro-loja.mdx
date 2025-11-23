@@ -1,0 +1,52 @@
+import { fakeCroKpis, setFakerSeed } from '@/data/faker';
+
+setFakerSeed(42);
+const CRO_KPIS = fakeCroKpis();
+
+## Contexto
+
+Replatformei o checkout da *Studio Nébula* após mapear 47 pontos de fricção com heatmaps, gravações e entrevistas remotas. As hipóteses prioritárias foram ranqueadas com scorecard de esforço × impacto e viraram um backlog de experimentos A/B executados no edge.
+
+<Callout intent="info">
+  Usei o framework **HEART + AARRR** para defender cada hipótese com indicadores de experiência e receita durante os steering committees com CEO e CMO.
+</Callout>
+
+## Abordagem
+
+1. **Mapeamento** — Evento custom no GA4 para cada interação crítica (tamanho, frete, parcelamento) abastecendo dashboards diários.
+2. **Design tokens** — Componentes críticos migrados para um sistema responsivo com Tailwind + Radix, eliminando variações inesperadas.
+3. **Edge Experiments** — Feature Flags no middleware do Next 14 permitem rollout e rollback instantâneos com logs auditáveis.
+
+<KPI items={CRO_KPIS} />
+
+## Exemplo de teste
+
+<BeforeAfter
+  beforeTitle="Checkout original"
+  beforeDescription="Visuais concorrendo com o resumo do pedido, formulários longos e CTA sem indicar segurança."
+  afterTitle="Checkout otimizado"
+  afterDescription="Resumo componentizado, selo de confiança dinâmico e auto-fill em dois passos."
+/>
+
+<Code language="tsx">{`
+const checkoutFlags = createExperiment({
+  key: "checkout-flow",
+  variations: ["control", "trust-badges"],
+});
+
+export function HeroCTA() {
+  const { variation } = checkoutFlags.useVariation();
+  return (
+    <Button className={variation === "trust-badges" ? "gap-2" : ""}>
+      {variation === "trust-badges" && <Shield />}
+      Finalizar compra
+    </Button>
+  );
+}
+`}</Code>
+
+## Resultado
+
+- Conversão mobile cresceu **+42%** com LCP médio de **1,7 s** e CLS < 0,05.
+- Ticket médio subiu **+18%** graças a bundles dinâmicos baseados no histórico.
+- Os componentes do checkout entraram no design system com documentação e testes automatizados, reduzindo retrabalho futuro.

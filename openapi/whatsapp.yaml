@@ -1,0 +1,119 @@
+openapi: 3.1.0
+info:
+  title: WhatsApp Webhook API
+  version: "1.0.0"
+  description: >
+    REST endpoints exposed by the Next.js application to integrate with the
+    WhatsApp Business Platform. Includes webhook verification and inbound message processing.
+servers:
+  - url: https://your-domain.com
+paths:
+  /api/whatsapp:
+    get:
+      summary: Verify webhook subscription
+      description: Returns the `hub.challenge` when the provided verify token matches the server configuration.
+      parameters:
+        - in: query
+          name: hub.mode
+          required: true
+          schema:
+            type: string
+        - in: query
+          name: hub.verify_token
+          required: true
+          schema:
+            type: string
+        - in: query
+          name: hub.challenge
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Verification succeeded.
+          content:
+            text/plain:
+              schema:
+                type: string
+        "401":
+          description: Token mismatch.
+    post:
+      summary: Receive WhatsApp messages
+      description: Normalizes inbound payloads and stores conversations/messages in Supabase.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/WebhookEnvelope"
+      responses:
+        "200":
+          description: Payload processed.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  ok:
+                    type: boolean
+        "500":
+          description: Processing error.
+components:
+  schemas:
+    WebhookEnvelope:
+      type: object
+      properties:
+        object:
+          type: string
+          example: whatsapp_business_account
+        entry:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              changes:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    field:
+                      type: string
+                    value:
+                      type: object
+                      properties:
+                        contacts:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              wa_id:
+                                type: string
+                              profile:
+                                type: object
+                        messages:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              id:
+                                type: string
+                              from:
+                                type: string
+                              timestamp:
+                                type: string
+                              type:
+                                type: string
+                              text:
+                                type: object
+                                properties:
+                                  body:
+                                    type: string
+                        metadata:
+                          type: object
+                          properties:
+                            display_phone_number:
+                              type: string
+                            phone_number_id:
+                              type: string

@@ -1,0 +1,74 @@
+# Dependencies
+node_modules/
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Build outputs
+.next/
+out/
+build/
+dist/
+*.min.js
+
+# Cache
+.cache/
+.turbo/
+.vercel/
+.swc/
+
+# Testing
+coverage/
+.nyc_output/
+playwright-report/
+test-results/
+
+# Config files
+next.config.mjs
+postcss.config.mjs
+tailwind.config.ts
+vitest.config.ts
+playwright.config.ts
+
+# Generated files
+*.config.js
+*.setup.js
+*.setup.ts
+
+# Public assets
+public/
+
+# Environment
+.env
+.env.local
+.env.production
+.env.development
+
+# Logs
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# Prisma
+prisma/migrations/
+
+# Storybook
+storybook-static/
+.storybook/
+
+# Auto-generated
+*.d.ts
+!src/**/*.d.ts
+!types/**/*.d.ts
+
+# MDX
+.mdx
+
+# Vercel
+.vercel/

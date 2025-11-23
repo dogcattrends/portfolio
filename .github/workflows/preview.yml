@@ -1,0 +1,26 @@
+name: Preview
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  preview:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+      - run: npm run lint
+      - run: npm run build
+      - name: Lighthouse (filesystem)
+        run: npx lhci autorun --config=.lighthouserc.js --upload.target=filesystem --upload.outputDir=./lhci-report
+      - name: Upload Lighthouse report
+        uses: actions/upload-artifact@v4
+        with:
+          name: lhci-report
+          path: ./lhci-report

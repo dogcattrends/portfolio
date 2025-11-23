@@ -1,0 +1,48 @@
+{
+  "info": {
+    "name": "WhatsApp Webhook",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_postman_id": "5a8f2dd4-4c52-4cf0-a4bf-5d3bc1e4d777",
+    "description": "Collection to validate the WhatsApp webhook verification and message ingestion endpoints."
+  },
+  "item": [
+    {
+      "name": "GET Verify Webhook",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "{{baseUrl}}/api/whatsapp?hub.mode=subscribe&hub.verify_token={{verifyToken}}&hub.challenge=123456",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "whatsapp"],
+          "query": [
+            { "key": "hub.mode", "value": "subscribe" },
+            { "key": "hub.verify_token", "value": "{{verifyToken}}" },
+            { "key": "hub.challenge", "value": "123456" }
+          ]
+        }
+      }
+    },
+    {
+      "name": "POST Incoming Message",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"object\": \"whatsapp_business_account\",\n  \"entry\": [\n    {\n      \"id\": \"123\",\n      \"changes\": [\n        {\n          \"value\": {\n            \"contacts\": [\n              { \"wa_id\": \"5511999999999\", \"profile\": { \"name\": \"João\" } }\n            ],\n            \"messages\": [\n              {\n                \"id\": \"wamid.HBgMNTUxMTk5OTk5OTk5FQIAERgSODg4OTczQ0ZDRUIxMTlDMEMxAA==\",\n                \"from\": \"5511999999999\",\n                \"timestamp\": \"1732036800\",\n                \"type\": \"text\",\n                \"text\": { \"body\": \"Olá!\" }\n              }\n            ],\n            \"metadata\": {\n              \"display_phone_number\": \"15551234567\",\n              \"phone_number_id\": \"123456789\"\n            }\n          },\n          \"field\": \"messages\"\n        }\n      ]\n    }\n  ]\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/whatsapp",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "whatsapp"]
+        }
+      }
+    }
+  ],
+  "variable": [
+    { "key": "baseUrl", "value": "http://localhost:3000" },
+    { "key": "verifyToken", "value": "your-verify-token" }
+  ]
+}
