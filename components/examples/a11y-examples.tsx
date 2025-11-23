@@ -4,8 +4,9 @@
  */
 
 import * as React from "react";
-import { Callout } from "@/components/ui/callout";
+
 import { BeforeAfter } from "@/components/ui/before-after";
+import { Callout } from "@/components/ui/callout";
 
 /**
  * Exemplo 1: Imagens com alt text apropriado

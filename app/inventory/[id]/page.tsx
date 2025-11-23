@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { getInventoryDetail } from "@/lib/inventory-service";
+
 import { InventoryTimeline } from "@/components/inventory/inventory-timeline";
+import { getInventoryDetail } from "@/lib/inventory-service";
 
 type InventoryDetailProps = {
   params: { id: string };

@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
-import { getInventoryList } from "@/lib/inventory-service";
+
 import { InventoryFilters } from "@/components/inventory/inventory-filters";
 import { InventoryGrid } from "@/components/inventory/inventory-grid";
+import { getInventoryList } from "@/lib/inventory-service";
 
 export const metadata: Metadata = {
   title: "Inventário",

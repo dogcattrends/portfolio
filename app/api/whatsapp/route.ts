@@ -1,5 +1,8 @@
 import { randomUUID } from "crypto";
-import { NextRequest, NextResponse } from "next/server";
+
+import type { NextRequest} from "next/server";
+import { NextResponse } from "next/server";
+
 import { getServiceClient } from "@/lib/supabase/server";
 
 const VERIFY_TOKEN = process.env.VERIFY_TOKEN;

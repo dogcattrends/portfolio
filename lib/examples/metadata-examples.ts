@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+
 import { buildOpenGraphMetadata } from "@/lib/og-utils";
 
 /**

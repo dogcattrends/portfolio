@@ -1,11 +1,12 @@
 "use client";
 
-import * as React from "react";
-import Image from "next/image";
 import { Download, Copy, Mail, Check } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import Image from "next/image";
+import * as React from "react";
+
 import { CaseKpi } from "@/components/case-kpi";
 import { BeforeAfter } from "@/components/ui/before-after";
+import { Button } from "@/components/ui/button";
 import {
   type GeneratedProposal,
   type TechnicalScreenshot,

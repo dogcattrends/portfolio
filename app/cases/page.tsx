@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
+
+import { CasesExplorer } from "@/components/cases/search-explorer";
 import { getCaseSummaries, getCaseTags } from "@/lib/cases";
 import { getCasesDictionary, resolveCasesLocale } from "@/lib/i18n/cases";
-import { CasesExplorer } from "@/components/cases/search-explorer";
 
 export const metadata: Metadata = {
   title: "Cases | Portfolio",

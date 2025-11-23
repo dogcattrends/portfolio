@@ -1,11 +1,12 @@
 "use client";
 
-import * as React from "react";
-import { ArrowUpDown, ChevronDown, Download, Search, X, AlertCircle } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { ArrowUpDown, ChevronDown, Download, Search, X, AlertCircle } from "lucide-react";
+import * as React from "react";
+
+import { useTranslations, type Locale } from "@/lib/i18n/ui";
 import { cn } from "@/lib/utils";
 import { isNonEmpty, getErrorMessage } from "@/lib/utils/errors";
-import { useTranslations, type Locale } from "@/lib/i18n/ui";
 
 /**
  * Direção de ordenação

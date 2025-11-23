@@ -1,4 +1,6 @@
-import { NextResponse, NextRequest } from "next/server";
+import type { NextRequest } from "next/server";
+import { NextResponse } from "next/server";
+
 import { getInventoryList, type InventoryStatus } from "@/lib/inventory-service";
 
 export const revalidate = 60;

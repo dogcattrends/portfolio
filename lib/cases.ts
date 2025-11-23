@@ -1,10 +1,13 @@
+import { promises as fs } from "node:fs";
+import path from "node:path";
+
+import { compileMDX } from "next-mdx-remote/rsc";
 import { cache } from "react";
 import type { ReactElement } from "react";
-import path from "node:path";
-import { promises as fs } from "node:fs";
-import { compileMDX } from "next-mdx-remote/rsc";
-import type { CasesLocale } from "@/lib/i18n/cases";
+
+
 import * as MdxComponents from "@/components/cases/mdx-components";
+import type { CasesLocale } from "@/lib/i18n/cases";
 
 const CASES_ROOT = path.join(process.cwd(), "content", "cases");
 const INDEX_FILE = path.join(CASES_ROOT, "index.json");

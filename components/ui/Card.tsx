@@ -1,7 +1,8 @@
 "use client";
 
-import * as React from "react";
 import { motion, type HTMLMotionProps } from "framer-motion";
+import * as React from "react";
+
 import { cn } from "@/lib/utils";
 
 export interface CardProps extends HTMLMotionProps<"div"> {

@@ -1,4 +1,5 @@
 import { randomUUID } from "crypto";
+
 import { getServiceClient } from "@/lib/supabase/server";
 
 export type ConversationRecord = {

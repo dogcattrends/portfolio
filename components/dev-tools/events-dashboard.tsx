@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+
 import { getAnalyticsEventHistory, subscribeToAnalyticsEvents, type AnalyticsEventRecord } from '@/lib/analytics/client';
 
 export function EventsDashboard(): JSX.Element {

@@ -1,9 +1,10 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import Fuse from "fuse.js";
 import Image from "next/image";
 import Link from "next/link";
-import Fuse from "fuse.js";
+import { useMemo, useState } from "react";
+
 import type { CaseSummary } from "@/lib/cases";
 import type { CasesLocale, CasesDictionary } from "@/lib/i18n/cases";
 import { cn } from "@/lib/utils";

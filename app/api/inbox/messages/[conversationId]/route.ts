@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+
 import { getMessages } from "@/lib/inbox-service";
 
 export const revalidate = 15;

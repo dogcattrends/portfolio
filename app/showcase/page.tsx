@@ -1,10 +1,11 @@
 "use client";
 
 import * as React from "react";
-import { Callout } from "@/components/ui/callout";
-import { BeforeAfter } from "@/components/ui/before-after";
+
 import { CaseKpi } from "@/components/case-kpi";
 import type { KpiMetric } from "@/components/case-kpi";
+import { BeforeAfter } from "@/components/ui/before-after";
+import { Callout } from "@/components/ui/callout";
 
 /**
  * Página de demonstração dos componentes acessíveis

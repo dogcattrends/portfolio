@@ -1,5 +1,6 @@
 import { ImageResponse } from "@vercel/og";
 import { NextResponse } from "next/server";
+
 import { getCaseBySlug } from "@/lib/cases";
 import { resolveCasesLocale } from "@/lib/i18n/cases";
 

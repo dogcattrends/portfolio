@@ -1,4 +1,15 @@
 import { randomUUID } from "crypto";
+
+import type {
+  Project,
+  Skill,
+  PerformanceMetric,
+  CaseStudy,
+  Tag,
+  Experience,
+  Contact,
+  KpiMetric,
+} from "@/lib/schemas";
 import {
   ProjectStatus,
   SkillCategory,
@@ -13,16 +24,6 @@ import {
   Location,
   MarketSegment,
 } from "@/types/enums";
-import type {
-  Project,
-  Skill,
-  PerformanceMetric,
-  CaseStudy,
-  Tag,
-  Experience,
-  Contact,
-  KpiMetric,
-} from "@/lib/schemas";
 
 /**
  * Nomes realistas de empresas brasileiras e internacionais
