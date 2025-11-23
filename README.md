@@ -1,57 +1,108 @@
 # Portfolio ++
 
-## Visão
-- Landing e CMS pessoal com foco em prospecção B2B e provas de engenharia.
-- Inventário em tempo real + inbox integrado para simular operações reais (Supabase + Next.js).
-- Pipeline de automação (WhatsApp webhook, scripts de seed, relatórios) documentado para facilitar demonstrações.
+[![CI](https://github.com/dogcattrends/portfolio/actions/workflows/ci.yml/badge.svg)](https://github.com/dogcattrends/portfolio/actions/workflows/ci.yml)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/dogcattrends/portfolio)
+
+## VisÃ£o
+- Landing e CMS pessoal com foco em prospecï¿½ï¿½o B2B e provas de engenharia.
+- Inventï¿½rio em tempo real + inbox integrado para simular operaï¿½ï¿½es reais (Supabase + Next.js).
+- Pipeline de automaï¿½ï¿½o (WhatsApp webhook, scripts de seed, relatï¿½rios) documentado para facilitar demonstraï¿½ï¿½es.
 
 ## Stack & Arquitetura
 - **Frontend:** Next.js 14 (App Router), React 18, TypeScript strict, shadcn/ui + Radix.
-- **Design System:** Tailwind CSS + tokens utilitários (`cn`, variáveis CSS), animações com Framer Motion.
+- **Design System:** Tailwind CSS + tokens utilitï¿½rios (`cn`, variï¿½veis CSS), animaï¿½ï¿½es com Framer Motion.
 - **Dados:** Supabase (Postgres, RLS, functions) + scripts TS (`scripts/seed-inventory.ts`).
-- **Testing & QA:** Vitest + Testing Library, Playwright, Lighthouse CI, axe-core/react, jest-axe nos componentes críticos.
+- **Testing & QA:** Vitest + Testing Library, Playwright, Lighthouse CI, axe-core/react, jest-axe nos componentes crï¿½ticos.
 - **DevOps:** Husky + lint-staged (Prettier + ESLint import/order), GitHub Actions (CI + Preview artefatos LHCI), Commitlint convencional.
 
 ## Como rodar localmente
+
+### PrÃ©-requisitos
+- Node.js 20+
+- npm ou pnpm
+- Conta Supabase (ou Docker para instÃ¢ncia local)
+
+### Setup
 ```bash
-cp .env.example .env        # configure Supabase + Meta WABA tokens
-npm install                 # instala dependências (Node 20+)
-npm run db:push             # aplica migrations Supabase
-npm run seed:inventory      # popula 200 itens / 500 movimentos
+# 1. Clone o repositÃ³rio
+git clone https://github.com/dogcattrends/portfolio.git
+cd portfolio
+
+# 2. Instale dependÃªncias
+npm install
+
+# 3. Configure variÃ¡veis de ambiente
+cp .env.example .env.local
+# Edite .env.local com suas credenciais do Supabase
+# Veja docs/ENV_SETUP.md para instruÃ§Ãµes detalhadas
+
+# 4. Aplique migrations (se usando Supabase remoto)
+npm run db:push
+
+# 5. Popule dados de exemplo
+npm run seed:inventory      # 200 itens + 500 movimentos
 npm run dev                 # http://localhost:3000
 ```
-- `npm run test` ? testes unitários (Vitest)
+- `npm run test` ? testes unitï¿½rios (Vitest)
 - `npm run e2e` ? Playwright headless (instale browsers com `npx playwright install`)
-- `npm run lh` ? Lighthouse CI (requer `npm run build` prévio)
+- `npm run lh` ? Lighthouse CI (requer `npm run build` prï¿½vio)
 
-## Provas e Evidências
+## Deploy
+
+### Vercel (Recomendado)
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/dogcattrends/portfolio)
+
+1. Click no botÃ£o acima
+2. Configure as variÃ¡veis de ambiente (veja `docs/ENV_SETUP.md`)
+3. Deploy automÃ¡tico a cada push na `main`
+
+**VariÃ¡veis obrigatÃ³rias:**
+- `NEXT_PUBLIC_SUPABASE_URL`
+- `NEXT_PUBLIC_SUPABASE_ANON_KEY`
+- `SUPABASE_URL`
+- `SUPABASE_SERVICE_ROLE_KEY`
+
+### Alternativas
+- **Docker:** `docker build -t portfolio . && docker run -p 3000:3000 portfolio`
+- **Self-hosted:** `npm run build && npm start`
+
+## Provas e EvidÃªncias
 | Tipo | Link |
 | --- | --- |
-| Demo (Vercel) | https://portfolio-demo.example.com |
-| Lighthouse CI | [Workflow CI](https://github.com/byimp/portifolio/actions/workflows/ci.yml) (artefato `lhci-report`) |
+| RepositÃ³rio | https://github.com/dogcattrends/portfolio |
+| Lighthouse CI | [Workflow CI](https://github.com/dogcattrends/portfolio/actions/workflows/ci.yml) (artefato `lhci-report`) |
 | axe-core/react | [Checklist A11Y](docs/ACCESSIBILITY.md) |
-| Vídeos | [Walkthrough (YouTube)](https://youtu.be/demo-portfolio) + [Stories](https://drive.example.com/stories) |
+| Vï¿½deos | [Walkthrough (YouTube)](https://youtu.be/demo-portfolio) + [Stories](https://drive.example.com/stories) |
 | Postman/OpenAPI | [`docs/postman/whatsapp-collection.json`](docs/postman/whatsapp-collection.json) / [`openapi/whatsapp.yaml`](openapi/whatsapp.yaml) |
 
 ## Casos em Destaque
-1. **CRO Loja** – melhorias de checkout com experimentos Edge + KPIs rastreados.
-2. **WhatsApp Inbox** – webhook + inbox com templates, handoff, tags e exportação de evidências.
-3. **Inventário Supabase** – dashboards e relatórios (low stock, timeline, CSV/Excel nativo).
+1. **CRO Loja** ï¿½ melhorias de checkout com experimentos Edge + KPIs rastreados.
+2. **WhatsApp Inbox** ï¿½ webhook + inbox com templates, handoff, tags e exportaï¿½ï¿½o de evidï¿½ncias.
+3. **Inventï¿½rio Supabase** ï¿½ dashboards e relatï¿½rios (low stock, timeline, CSV/Excel nativo).
 
 ## Limites atuais
 - Webhooks do WhatsApp exigem tokens reais (mockados localmente).
-- Relatórios Lighthouse dependem do build estático; métricas em páginas dinamicamente carregadas podem variar.
-- Áudio das notificações usa Web Audio API e pode ser bloqueado em alguns navegadores sem interação prévia.
+- Relatï¿½rios Lighthouse dependem do build estï¿½tico; mï¿½tricas em pï¿½ginas dinamicamente carregadas podem variar.
+- ï¿½udio das notificaï¿½ï¿½es usa Web Audio API e pode ser bloqueado em alguns navegadores sem interaï¿½ï¿½o prï¿½via.
+
+## DocumentaÃ§Ã£o
+
+- [ENV_SETUP.md](docs/ENV_SETUP.md) - ConfiguraÃ§Ã£o de variÃ¡veis de ambiente
+- [ACCESSIBILITY.md](docs/ACCESSIBILITY.md) - Checklist de acessibilidade
+- [PERFORMANCE-METRICS.md](docs/PERFORMANCE-METRICS.md) - MÃ©tricas e reproduÃ§Ã£o
+- [PROPOSAL-GENERATOR.md](docs/PROPOSAL-GENERATOR.md) - Gerador automÃ¡tico de propostas
+- [TESTING-SUMMARY.md](docs/TESTING-SUMMARY.md) - EstratÃ©gia de testes
 
 ## Roadmap (curto prazo)
 - [ ] Enfileirar mensagens de outbound com worker e retries exponenciais.
 - [ ] Implementar analytics reais em `/reports` consumindo `inventory_public_stats`.
-- [ ] Adicionar autenticação (Clerk/Supabase Auth) para multi-tenant real.
-- [ ] Gravar vídeo em 4K com os roteiros de `scripts/recording.md` e publicar em playlist.
+- [ ] Adicionar autenticaÃ§Ã£o (Clerk/Supabase Auth) para multi-tenant real.
+- [ ] Gravar vÃ­deo em 4K com os roteiros de `scripts/recording.md` e publicar em playlist.
 
-## Licenças de Assets
-- Ícones: Lucide (licença MIT).
+## Licenï¿½as de Assets
+- ï¿½cones: Lucide (licenï¿½a MIT).
 - Fontes: Inter (SIL OFL 1.1 via Google Fonts).
-- Ilustrações SVG (public/cases/*): autorais, uso livre com atribuição.
-- Vídeos demonstrativos: placeholders do Coverr, licença CC0 com crédito opcional.
+- Ilustraï¿½ï¿½es SVG (public/cases/*): autorais, uso livre com atribuiï¿½ï¿½o.
+- Vï¿½deos demonstrativos: placeholders do Coverr, licenï¿½a CC0 com crï¿½dito opcional.
 - Dados fake (seed, CSV) sob MIT para reuso.
