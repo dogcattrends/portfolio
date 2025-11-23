@@ -4,38 +4,8 @@
   "installCommand": "npm ci",
   "framework": "nextjs",
   "outputDirectory": ".next",
-  "env": {
-    "NEXT_PUBLIC_SUPABASE_URL": {
-      "description": "URL pública do projeto Supabase (client-side)",
-      "value": "https://ptsveobymsavvxhxwerq.supabase.co"
-    },
-    "NEXT_PUBLIC_SUPABASE_ANON_KEY": {
-      "description": "Chave anônima pública do Supabase (client-side)"
-    },
-    "SUPABASE_URL": {
-      "description": "URL do Supabase para operações server-side",
-      "value": "https://ptsveobymsavvxhxwerq.supabase.co"
-    },
-    "SUPABASE_SERVICE_ROLE_KEY": {
-      "description": "Service Role Key do Supabase (server-side, sensível)"
-    },
-    "SUPABASE_JWT_SECRET": {
-      "description": "JWT Secret do Supabase (opcional, para validação de tokens)"
-    },
-    "META_WABA_TOKEN": {
-      "description": "Token de acesso do WhatsApp Business API (opcional)"
-    },
-    "WABA_PHONE_ID": {
-      "description": "ID do telefone WhatsApp Business (opcional)"
-    },
-    "VERIFY_TOKEN": {
-      "description": "Token de verificação para webhook do WhatsApp (opcional)"
-    }
-  },
   "regions": ["gru1"],
   "functions": {
-    "app/api/**/*.ts": {
-      "maxDuration": 10
-    }
+    "app/api/**/*.ts": { "maxDuration": 10 }
   }
 }
