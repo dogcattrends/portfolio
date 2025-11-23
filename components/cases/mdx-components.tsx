@@ -1,6 +1,7 @@
 'use client';
 
 import type { ReactNode } from "react";
+
 import { logAnalyticsEvent } from "@/lib/analytics/client";
 import { cn } from "@/lib/utils";
 

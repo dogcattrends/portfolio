@@ -1,11 +1,12 @@
 "use client";
 
+import { Loader2, FileText, CheckCircle2 } from "lucide-react";
 import * as React from "react";
-import { Button } from "@/components/ui/button";
+
 import { ProposalViewer } from "@/components/proposal-viewer";
+import { Button } from "@/components/ui/button";
 import { useProposalGenerator } from "@/hooks/use-proposal-generator";
 import type { CaseSummary } from "@/lib/cases";
-import { Loader2, FileText, CheckCircle2 } from "lucide-react";
 
 /**
  * Exemplo de geração de proposta automática

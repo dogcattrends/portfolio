@@ -1,8 +1,9 @@
 "use client";
 
-import * as React from "react";
-import { Send, Smile, Paperclip, Command } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { Send, Smile, Paperclip, Command } from "lucide-react";
+import * as React from "react";
+
 import { cn } from "@/lib/utils";
 
 /**

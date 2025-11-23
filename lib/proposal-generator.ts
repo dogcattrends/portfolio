@@ -1,5 +1,5 @@
-import type { CaseSummary } from "@/lib/cases";
 import type { KpiMetric } from "@/components/case-kpi";
+import type { CaseSummary } from "@/lib/cases";
 
 /**
  * KPI extraído do case para proposta

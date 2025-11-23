@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+
 import { getConversations } from "@/lib/inbox-service";
 
 export const revalidate = 30;

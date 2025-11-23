@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
-import { getLowStockReport } from "@/lib/inventory-service";
+
 import { LowStockTable } from "@/components/reports/low-stock-table";
+import { getLowStockReport } from "@/lib/inventory-service";
 
 export const metadata: Metadata = {
   title: "Relatório: Estoque crítico",

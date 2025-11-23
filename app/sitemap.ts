@@ -1,4 +1,5 @@
 import type { MetadataRoute } from "next";
+
 import { getCaseSlugs } from "@/lib/cases";
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://example.com";

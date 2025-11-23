@@ -1,4 +1,6 @@
-import { NextRequest, NextResponse } from "next/server";
+import type { NextRequest} from "next/server";
+import { NextResponse } from "next/server";
+
 import { updateConversationTags } from "@/lib/inbox-service";
 
 export async function POST(request: NextRequest) {

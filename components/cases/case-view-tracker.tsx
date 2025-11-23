@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect } from 'react';
+
 import { logAnalyticsEvent } from '@/lib/analytics/client';
 
 type CaseViewTrackerProps = {

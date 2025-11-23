@@ -1,10 +1,11 @@
 import { randomUUID } from "crypto";
+
+import type { Message, Conversation } from "@/lib/schemas";
 import {
   MessageType,
   MessageStatus,
   MessageDirection,
 } from "@/types/enums";
-import type { Message, Conversation } from "@/lib/schemas";
 
 /**
  * Nomes brasileiros realistas
