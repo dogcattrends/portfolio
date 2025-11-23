@@ -32,6 +32,24 @@ VERIFY_TOKEN=seu-verify-token
 2. Vá em **Settings → Environment Variables**
 3. Adicione cada variável conforme necessário:
 
+#### Importante sobre `vercel.json`
+O arquivo `vercel.json` **não** aceita objetos descritivos para variáveis (ex: `{ "description": "...", "value": "..." }`). Cada chave deve ser um *string literal* definido diretamente no painel da Vercel ou via CLI. Caso você coloque objetos, verá erros como:
+
+```
+Invalid request: `env.NEXT_PUBLIC_SUPABASE_URL` should be string
+```
+
+Solução: remova o bloco `env` inválido do `vercel.json` e configure as variáveis no dashboard (Settings → Environment Variables) ou via CLI:
+
+```bash
+vercel env add NEXT_PUBLIC_SUPABASE_URL production
+vercel env add NEXT_PUBLIC_SUPABASE_ANON_KEY production
+vercel env add SUPABASE_URL production
+vercel env add SUPABASE_SERVICE_ROLE_KEY production
+```
+
+Isso evita que o deploy falhe por formato incorreto.
+
 #### Obrigatórias (Supabase)
 - `NEXT_PUBLIC_SUPABASE_URL` → `https://ptsveobymsavvxhxwerq.supabase.co`
 - `NEXT_PUBLIC_SUPABASE_ANON_KEY` → (obtenha no Dashboard do Supabase → Settings → API)
